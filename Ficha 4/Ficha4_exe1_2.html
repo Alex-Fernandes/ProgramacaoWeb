@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha 4 exe 1</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="F4_exe2.js"></script>
+    <script>
+
+        //Em javascript document.AddEventListener("DOMContentLoaded", function(){});
+        //document.load(function(){});
+        $(document).ready(function () {
+            //document.write("<h1>Programação Web - Cliente</h1>");
+            // $() ou jQuerry(); mesma coisa
+            $(document.body).append("<h1>Programação Web - Cliente</h1>");
+        })
+    </script>
+</head>
+<body>
+
+<div style="text-align: center" >
+    <img id="imagem"  width="400" height="400" src="catWhiskers.jpg">
+    <br>
+    <button onclick="escondeMostra()">Esconde/Mostra</button>
+    <button onmouseover="esconde()">Esconde</button>
+    <button id="botao">Mostra</button>
+</div>
+</body>
+</html>
