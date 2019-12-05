@@ -46,7 +46,7 @@ main {
 }
 
 aside{
-    float:left;
+    float:right;
     width:20%;
 }
 aside a{
