@@ -3,6 +3,8 @@
 const API_KEY = "9091e687";
 const API_URL = "http://www.omdbapi.com/?apikey=" + API_KEY + "&";
 
+var div_filme_clone = null;
+
 function pesquisar() {
 
     /** ir buscar o valor **/
@@ -15,23 +17,14 @@ function pesquisar() {
         url: search_url
     }).done(function (msg) {
         if(msg.Response == "True"){
-            var results = msg.Search;
+            var results = msg.Search; // array dos elementos
 
-            if(results.length <= 0){
-                return;
-            }
-            var results_html = $(".filme"); //Array de elementos html.
-                                            //Está a ir à classe filme para ir buscar todos os elementos
+            var lista_filmes = $("#lista-filmes");
+            lista_filmes.html("");
 
-            //results_html.length só vai contar as vezes que a classe filme existe
-            for(var i = 0; i < results_html.length ; ++i){
+           results.forEach(function (result) {
 
-                if(i >= results.length){
-                    break;
-                }
-
-                var result = results[i];
-                var result_html = results_html[i];
+                var result_html = div_filme_clone.clone();
 
                 var titulo = result.Title;
                 var ano = result.Year;
@@ -54,7 +47,10 @@ function pesquisar() {
                 console.log("Ano: " + ano);
                 console.log("Tipo: " + tipo);
                 console.log("Poster: " + poster);
-            }
+
+
+                lista_filmes.append(result_html);
+           });
 
         }else{
             console.log("Error: invalid ajax response");
@@ -62,3 +58,11 @@ function pesquisar() {
 
     });
 }
+
+$(function () {
+    //Equivalente On document load
+    var div_filme = $(".filme"); // seleciona a div
+    div_filme_clone =  div_filme.clone(); // clona a div para a variavel div_filme_clone
+    div_filme.hide(); // faz que a div fique escondida
+
+});
